@@ -27,12 +27,14 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    solutionmethod.cpp
+    solutionmethod.cpp \
+    expression.cpp
 
 HEADERS += \
     mainwindow.h \
     exprtk.hpp \
-    solutionmethod.h
+    solutionmethod.h \
+    expression.h
 
 FORMS += \
         mainwindow.ui
