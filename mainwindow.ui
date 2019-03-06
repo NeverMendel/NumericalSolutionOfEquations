@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QChartView" name="graphicsView">
+   <widget class="QChartView" name="chartView">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -50,6 +50,8 @@
     <property name="title">
      <string>NumericalSolutionsOfEquations</string>
     </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuNumericalSolutionsOfEquations"/>
@@ -61,6 +63,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNext"/>
+   <addaction name="actionPrevious"/>
+   <addaction name="separator"/>
    <addaction name="actionReload"/>
    <addaction name="actionReset"/>
   </widget>
@@ -82,37 +87,84 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContent">
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>0</y>
-       <width>209</width>
-       <height>339</height>
+       <width>201</width>
+       <height>311</height>
       </rect>
      </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="function2"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="function1"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="function2_label">
-        <property name="text">
-         <string>Function 2</string>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="horizontalSpacing">
+         <number>6</number>
         </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="function1_label">
+          <property name="text">
+           <string>Function 1</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="function1"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="function2_label">
+          <property name="text">
+           <string>Function 2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="function2"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Solution method</string>
+        </property>
+        <widget class="QWidget" name="verticalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>19</y>
+           <width>181</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QRadioButton" name="radioButton">
+            <property name="text">
+             <string>Bisection</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_2">
+            <property name="text">
+             <string>Secant</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_3">
+            <property name="text">
+             <string>Newton</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="function1_label">
-        <property name="text">
-         <string>Function 1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
+      <item>
        <widget class="QPushButton" name="displayButton">
         <property name="text">
          <string>Display</string>
@@ -136,6 +188,27 @@
   <action name="actionReset">
    <property name="text">
     <string>Reset</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="text">
+    <string>Next</string>
+   </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
+  </action>
+  <action name="actionPrevious">
+   <property name="text">
+    <string>Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

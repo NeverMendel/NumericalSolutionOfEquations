@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QChart>
+
+//using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -18,8 +21,11 @@ public:
 private slots:
     void on_actionExit_triggered();
 
+    void on_displayButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QtCharts::QChart *chart;
 };
 
 #endif // MAINWINDOW_H
