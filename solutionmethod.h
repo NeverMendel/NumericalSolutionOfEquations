@@ -4,19 +4,23 @@
 typedef unsigned int uint;
 
 #include <QChart>
+#include "expression.h"
 
 class SolutionMethod
 {
 public:
-    SolutionMethod(QtCharts::QChart *chart, uint steps);
-    virtual void nextStep();
-    virtual void previousStep();
+    SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, uint steps);
+    virtual void nextStep() = 0;
+    virtual void previousStep() = 0;
     uint getCurrentStep();
     uint getTotalSteps();
+    void setStep(uint step);
 protected:
     QtCharts::QChart *chart;
-    uint totalSteps;
     uint currentStep;
+    Expression *e1, *e2;
+private:
+    uint totalSteps;
 };
 
 #endif // SOLUTIONMETHOD_H
