@@ -66,7 +66,7 @@
    <addaction name="actionNext"/>
    <addaction name="actionPrevious"/>
    <addaction name="separator"/>
-   <addaction name="actionReload"/>
+   <addaction name="actionRestart"/>
    <addaction name="actionReset"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -110,7 +110,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="function1"/>
+         <widget class="QLineEdit" name="function1">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="function2_label">
@@ -120,12 +124,36 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="function2"/>
+         <widget class="QLineEdit" name="function2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Steps</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="stepsSB">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>300</number>
+          </property>
+          <property name="value">
+           <number>10</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox">
+       <widget class="QGroupBox" name="radioButtons">
         <property name="title">
          <string>Solution method</string>
         </property>
@@ -138,23 +166,26 @@
            <height>111</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QVBoxLayout" name="rdLayout">
           <item>
-           <widget class="QRadioButton" name="radioButton">
+           <widget class="QRadioButton" name="bisectionRB">
             <property name="text">
              <string>Bisection</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_2">
+           <widget class="QRadioButton" name="secantRB">
             <property name="text">
              <string>Secant</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_3">
+           <widget class="QRadioButton" name="newtonRB">
             <property name="text">
              <string>Newton</string>
             </property>
@@ -180,14 +211,20 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionReload">
+  <action name="actionRestart">
    <property name="text">
-    <string>Reload</string>
+    <string>Restart</string>
+   </property>
+   <property name="toolTip">
+    <string>Restart</string>
    </property>
   </action>
   <action name="actionReset">
    <property name="text">
-    <string>Reset</string>
+    <string>Reset All</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset All</string>
    </property>
   </action>
   <action name="actionNext">

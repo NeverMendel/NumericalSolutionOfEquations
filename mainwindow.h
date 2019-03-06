@@ -3,8 +3,7 @@
 
 #include <QMainWindow>
 #include <QChart>
-
-//using namespace std;
+#include "expression.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +21,8 @@ private slots:
     void on_actionExit_triggered();
 
     void on_displayButton_clicked();
+
+    void on_actionReset_triggered();
 
 private:
     Ui::MainWindow *ui;
