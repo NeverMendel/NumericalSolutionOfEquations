@@ -5,9 +5,15 @@ Expression::Expression(std::string expression_str)
     this->expression_str = expression_str;
 }
 
-void Expression::setVariable(std::string variable, double value)
+void Expression::addVariable(std::string variable, double value)
 {
-    symbol_table.add_variable(variable, value);
+    variables.insert(std::make_pair(variable, value));
+    symbol_table.add_variable(variable, variables[variable]);
+}
+
+void Expression::changeVariable(std::string variable, double delta)
+{
+    variables[variable] += delta;
 }
 
 double Expression::solve()

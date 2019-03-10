@@ -2,6 +2,7 @@
 #define EXPRESSION_H
 
 #include <string.h>
+#include <map>
 
 #include "exprtk.hpp"
 
@@ -11,7 +12,8 @@ class Expression
 {
 public:
     Expression(std::string expression_str);
-    void setVariable(std::string variable, double value);
+    void addVariable(std::string variable, double value);
+    void changeVariable(std::string variable, double delta);
     double solve();
 
 private:
@@ -19,6 +21,7 @@ private:
     expression<double> expression;
     parser<double> parser;
     std::string expression_str;
+    std::map<std::string, double> variables;
 };
 
 #endif // EXPRESSION_H
