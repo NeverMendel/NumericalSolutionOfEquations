@@ -45,3 +45,13 @@ void MainWindow::on_actionReset_triggered()
     ui->stepsSB->setValue(10);
     ui->bisectionRB->setChecked(true);
 }
+
+void MainWindow::on_actionZoomIn_triggered()
+{
+    this->chart->zoomIn();
+}
+
+void MainWindow::on_actionZoomOut_triggered()
+{
+    this->chart->zoomOut();
+}

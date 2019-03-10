@@ -24,6 +24,10 @@ private slots:
 
     void on_actionReset_triggered();
 
+    void on_actionZoomIn_triggered();
+
+    void on_actionZoomOut_triggered();
+
 private:
     Ui::MainWindow *ui;
     QtCharts::QChart *chart;
