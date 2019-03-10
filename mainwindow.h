@@ -28,6 +28,8 @@ private slots:
 
     void on_actionZoomOut_triggered();
 
+    void on_actionResetZoom_triggered();
+
 private:
     Ui::MainWindow *ui;
     QtCharts::QChart *chart;

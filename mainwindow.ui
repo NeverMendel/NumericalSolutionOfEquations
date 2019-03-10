@@ -6,21 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>747</width>
-    <height>430</height>
+    <width>830</width>
+    <height>519</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>600</width>
+     <height>450</height>
+    </size>
+   </property>
    <widget class="QChartView" name="chartView">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>521</width>
-      <height>361</height>
+      <width>600</width>
+      <height>450</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -31,9 +49,12 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>200</width>
-      <height>200</height>
+      <width>600</width>
+      <height>450</height>
      </size>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
     </property>
     <property name="renderHints">
      <set>QPainter::HighQualityAntialiasing|QPainter::TextAntialiasing</set>
@@ -45,7 +66,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>747</width>
+     <width>830</width>
      <height>21</height>
     </rect>
    </property>
@@ -69,6 +90,7 @@
    <addaction name="actionNext"/>
    <addaction name="actionPrevious"/>
    <addaction name="separator"/>
+   <addaction name="actionResetZoom"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
    <addaction name="separator"/>
@@ -268,6 +290,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionResetZoom">
+   <property name="text">
+    <string>Reset Zoom</string>
    </property>
   </action>
  </widget>
