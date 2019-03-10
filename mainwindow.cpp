@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#define F1 "x + 1"
-#define F2 "0"
+#define F1 "x * 10"
+#define F2 "x ^ 2"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->function1->setText(F1);
     ui->function2->setText(F2);
     this->chart = ui->chartView->chart();
-    this->chart->createDefaultAxes();
+    ui->chartView->setRubberBand(QChartView::RectangleRubberBand);
 }
 
 MainWindow::~MainWindow()
@@ -32,16 +32,34 @@ void MainWindow::on_actionExit_triggered()
 void MainWindow::on_displayButton_clicked()
 {
     //TODO check the method to be used and display the chart
+
+    chart->removeAllSeries();
     Expression e1(ui->function1->text().toStdString());
     Expression e2(ui->function2->text().toStdString());
-    e1.setVariable("x", 5);
-    e2.setVariable("x", 5);
-    std::cout << e1.solve() << std::endl;
-    std::cout << e2.solve() << std::endl;
+
+    QSplineSeries *f1 = new QSplineSeries();
+    f1->setName("Function 1");
+    e1.addVariable("x", 0);
+    for (double i = 0; i < 100; i++) {
+        *f1 << QPointF(i, e1.solve());
+        e1.changeVariable("x", 1);
+    }
+    chart->addSeries(f1);
+
+    QSplineSeries *f2 = new QSplineSeries();
+    f2->setName("Function 2");
+    e2.addVariable("x", 0);
+    for (double i = 0; i < 100; i++) {
+        *f2 << QPointF(i, e2.solve());
+        e2.changeVariable("x", 1);
+    }
+    chart->addSeries(f2);
+    this->chart->createDefaultAxes();
 }
 
 void MainWindow::on_actionReset_triggered()
 {
+    chart->removeAllSeries();
     ui->function1->setText(F1);
     ui->function2->setText(F2);
     ui->stepsSB->setValue(10);
@@ -56,4 +74,9 @@ void MainWindow::on_actionZoomIn_triggered()
 void MainWindow::on_actionZoomOut_triggered()
 {
     this->chart->zoomOut();
+}
+
+void MainWindow::on_actionResetZoom_triggered()
+{
+    this->chart->zoomReset();
 }
