@@ -35,6 +35,9 @@
       <height>200</height>
      </size>
     </property>
+    <property name="renderHints">
+     <set>QPainter::HighQualityAntialiasing|QPainter::TextAntialiasing</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
