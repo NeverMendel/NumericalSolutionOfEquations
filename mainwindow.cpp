@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle(QCoreApplication::applicationName());
+
     ui->function1->setText(F1);
     ui->function2->setText(F2);
     this->chart = ui->chartView->chart();
