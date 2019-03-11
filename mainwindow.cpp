@@ -37,10 +37,13 @@ void MainWindow::on_displayButton_clicked()
     Expression e1(ui->function1->text().toStdString());
     Expression e2(ui->function2->text().toStdString());
 
+    int lb = ui->lbSpinBox->value();
+    int ub = ui->ubSpinBox->value();
+
     QSplineSeries *f1 = new QSplineSeries();
     f1->setName("Function 1");
-    e1.addVariable("x", 0);
-    for (double i = 0; i < 100; i++) {
+    e1.addVariable("x", lb);
+    for (double i = lb; i < ub; i++) {
         *f1 << QPointF(i, e1.solve());
         e1.changeVariable("x", 1);
     }
@@ -48,8 +51,8 @@ void MainWindow::on_displayButton_clicked()
 
     QSplineSeries *f2 = new QSplineSeries();
     f2->setName("Function 2");
-    e2.addVariable("x", 0);
-    for (double i = 0; i < 100; i++) {
+    e2.addVariable("x", lb);
+    for (double i = lb; i < ub; i++) {
         *f2 << QPointF(i, e2.solve());
         e2.changeVariable("x", 1);
     }
@@ -62,6 +65,8 @@ void MainWindow::on_actionReset_triggered()
     chart->removeAllSeries();
     ui->function1->setText(F1);
     ui->function2->setText(F2);
+    ui->lbSpinBox->setValue(0);
+    ui->ubSpinBox->setValue(100);
     ui->stepsSB->setValue(10);
     ui->bisectionRB->setChecked(true);
 }
