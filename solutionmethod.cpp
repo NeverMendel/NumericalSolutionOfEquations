@@ -8,6 +8,14 @@ SolutionMethod::SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart 
     this->lowerBound = lowerBound;
     this->upperBound = upperBound;
     totalSteps = steps;
+    //calculate isIncreasing
+    e1->addVariable("x", lowerBound);
+    e2->addVariable("x", lowerBound);
+    double start = e2->solve() - e1->solve();
+    e1->addVariable("x", upperBound);
+    e2->addVariable("x", upperBound);
+    double end = e2->solve() - e1->solve();
+    isIncreasingFunction = end > start;
 }
 
 uint SolutionMethod::getCurrentStep()

@@ -21,6 +21,7 @@ protected:
     Expression *e1, *e2;
     int lowerBound;
     int upperBound;
+     bool isIncreasingFunction;// could have problem in periodic functions if lowerBound and upperBound are too far
 private:
     uint totalSteps;
 };
