@@ -9,7 +9,7 @@ typedef unsigned int uint;
 class SolutionMethod
 {
 public:
-    SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, uint steps);
+    SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, int lowerBound, int upperBound, uint steps);
     virtual void nextStep() = 0;
     virtual void previousStep() = 0;
     uint getCurrentStep();
@@ -19,6 +19,8 @@ protected:
     QtCharts::QChart *chart;
     uint currentStep;
     Expression *e1, *e2;
+    int lowerBound;
+    int upperBound;
 private:
     uint totalSteps;
 };
