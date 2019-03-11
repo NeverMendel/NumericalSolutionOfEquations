@@ -12,3 +12,5 @@ Math school project.
 Other resources about Numerical Solutions Of Equations can be found 
 [here](http://cfd.mace.manchester.ac.uk/twiki/pub/Main/TimCraftNotes_All_Access/cfd1-numanal.pdf) and 
 [here](https://en.wikibooks.org/wiki/Numerical_Methods/Equation_Solving).
+
+This project uses exprtk for expression parsing and evaluation, for more info look in the [GitHub repo](https://github.com/ArashPartow/exprtk)
