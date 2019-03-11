@@ -14,6 +14,7 @@ public:
     Expression(std::string expression_str);
     void addVariable(std::string variable, double value);
     void changeVariable(std::string variable, double delta);
+    double getVariable(std::string variable);
     double solve();
 
 private:

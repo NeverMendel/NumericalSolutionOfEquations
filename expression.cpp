@@ -16,6 +16,11 @@ void Expression::changeVariable(std::string variable, double delta)
     variables[variable] += delta;
 }
 
+double Expression::getVariable(std::string variable)
+{
+    return variables[variable];
+}
+
 double Expression::solve()
 {
     symbol_table.add_constants();
