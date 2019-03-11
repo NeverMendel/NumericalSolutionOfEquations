@@ -1,6 +1,6 @@
 #include "solutionmethod.h"
 
-SolutionMethod::SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, int lowerBound, int upperBound, uint steps)
+SolutionMethod::SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps)
 {
     this->e1 = e1;
     this->e2 = e2;
