@@ -121,7 +121,7 @@
        <x>10</x>
        <y>0</y>
        <width>201</width>
-       <height>311</height>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -271,6 +271,48 @@
         <property name="text">
          <string>Display</string>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="resultsBox">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Results</string>
+        </property>
+        <widget class="QLabel" name="resultTextLabel">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>40</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Result:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="resultLabel">
+         <property name="geometry">
+          <rect>
+           <x>116</x>
+           <y>20</y>
+           <width>70</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>
