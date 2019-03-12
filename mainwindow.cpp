@@ -3,8 +3,7 @@
 
 #include <iostream>
 
-#define F1 "x * 10"
-#define F2 "x ^ 2"
+#define FUNCTION "x * 10"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,8 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(QCoreApplication::applicationName());
 
-    ui->function1->setText(F1);
-    ui->function2->setText(F2);
+    ui->function->setText(FUNCTION);
     this->chart = ui->chartView->chart();
     ui->chartView->setRubberBand(QChartView::RectangleRubberBand);
 }
@@ -34,37 +32,26 @@ void MainWindow::on_displayButton_clicked()
     //TODO check the method to be used and display the chart
 
     chart->removeAllSeries();
-    Expression e1(ui->function1->text().toStdString());
-    Expression e2(ui->function2->text().toStdString());
+    Expression expression(ui->function->text().toStdString());
 
     int lb = ui->lbSpinBox->value();
     int ub = ui->ubSpinBox->value();
 
-    QSplineSeries *f1 = new QSplineSeries();
-    f1->setName("Function 1");
-    e1.addVariable("x", lb);
+    QSplineSeries *series = new QSplineSeries();
+    series->setName("Function");
+    expression.addVariable("x", lb);
     for (double i = lb; i < ub; i++) {
-        *f1 << QPointF(i, e1.solve());
-        e1.changeVariable("x", 1);
+        *series << QPointF(i, expression.solve());
+        expression.changeVariable("x", 1);
     }
-    chart->addSeries(f1);
-
-    QSplineSeries *f2 = new QSplineSeries();
-    f2->setName("Function 2");
-    e2.addVariable("x", lb);
-    for (double i = lb; i < ub; i++) {
-        *f2 << QPointF(i, e2.solve());
-        e2.changeVariable("x", 1);
-    }
-    chart->addSeries(f2);
+    chart->addSeries(series);
     this->chart->createDefaultAxes();
 }
 
 void MainWindow::on_actionReset_triggered()
 {
     chart->removeAllSeries();
-    ui->function1->setText(F1);
-    ui->function2->setText(F2);
+    ui->function->setText(FUNCTION);
     ui->lbSpinBox->setValue(0);
     ui->ubSpinBox->setValue(100);
     ui->stepsSB->setValue(10);

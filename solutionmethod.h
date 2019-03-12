@@ -9,7 +9,7 @@ typedef unsigned int uint;
 class SolutionMethod
 {
 public:
-    SolutionMethod(Expression *e1, Expression *e2, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps);
+    SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps);
     virtual void nextStep() = 0;
     virtual void previousStep() = 0;
     virtual void getResult() = 0;
@@ -19,10 +19,9 @@ public:
 protected:
     QtCharts::QChart *chart;
     uint currentStep;
-    Expression *e1, *e2;
+    Expression *expression;
     double lowerBound;
     double upperBound;
-    bool isIncreasingFunction;// could have problem in periodic functions if lowerBound and upperBound are too far
 private:
     uint totalSteps;
 };
