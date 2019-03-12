@@ -34,3 +34,8 @@ double Expression::solve()
     return expression.value();
 }
 
+double Expression::derivative()
+{
+    return exprtk::derivative(expression, variables["x"]);
+}
+

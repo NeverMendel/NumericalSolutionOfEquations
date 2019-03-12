@@ -16,6 +16,7 @@ public:
     void changeVariable(std::string variable, double delta);
     double getVariable(std::string variable);
     double solve();
+    double derivative();
 
 private:
     symbol_table<double> symbol_table;
