@@ -1,22 +1,40 @@
 #include "bisectionmethod.h"
 
+BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps) : SolutionMethod (expression, chart, lowerBound, upperBound, steps)
+{};
+
 void BisectionMethod::nextStep()
 {
+    printf("lowerBound: %f, upperBound: %f", lowerBound, upperBound);
     double mid = (upperBound + lowerBound) / 2;
-    e1->addVariable("x", mid);
-    double r1 = e1->solve();
-    double r2 = e2->solve();
-    if(r2 - r1 > 0){
-        if(isIncreasingFunction)
-            lowerBound = mid;
-        else
-            upperBound = mid;
-    } else if (r2 - r1 < 0){
-        if(isIncreasingFunction)
-            upperBound = mid;
-        else
-            lowerBound = mid;
-    } else {
+    expression->addVariable("x", mid);
+    double res = expression->solve();
+    if(res == 0.0){
         //mid is the correct solution
+        printf("The solution of the equation is %f", mid);
+    } else {
+        double valueDerivative = expression->derivative();
+        if(valueDerivative > 0){
+            if(res>0)
+                upperBound = mid;
+            else
+                lowerBound = mid;
+        } else if (valueDerivative < 0){
+            if(res>0)
+                lowerBound = mid;
+            else
+                upperBound = mid;
+        } else {
+            printf("Error, derivative in %f is 0", mid);
+        }
     }
+}
+
+void BisectionMethod::previousStep(){
+    //TODO
+}
+
+double BisectionMethod::getResult(){
+    //TODO
+    return -1;
 }
