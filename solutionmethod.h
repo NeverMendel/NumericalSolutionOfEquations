@@ -12,7 +12,7 @@ public:
     SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps);
     virtual void nextStep() = 0;
     virtual void previousStep() = 0;
-    virtual void getResult() = 0;
+    virtual double getResult() = 0;
     uint getCurrentStep();
     uint getTotalSteps();
     void setStep(uint step);
