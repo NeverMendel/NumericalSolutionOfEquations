@@ -10,12 +10,11 @@ class SolutionMethod
 {
 public:
     SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps);
-    virtual void nextStep() = 0;
-    virtual void previousStep() = 0;
-    virtual double getResult() = 0;
+    virtual void next(uint steps = 1) = 0;
+    virtual double getCurrentResult() = 0;
+    virtual void display() = 0;
     uint getCurrentStep();
     uint getTotalSteps();
-    void setStep(uint step);
 protected:
     QtCharts::QChart *chart;
     uint currentStep;

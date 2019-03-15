@@ -3,38 +3,43 @@
 BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps) : SolutionMethod (expression, chart, lowerBound, upperBound, steps)
 {};
 
-void BisectionMethod::nextStep()
+void BisectionMethod::next(uint steps)
 {
-    printf("lowerBound: %f, upperBound: %f", lowerBound, upperBound);
-    double mid = (upperBound + lowerBound) / 2;
     expression->addVariable("x", mid);
-    double res = expression->solve();
-    if(res == 0.0){
-        //mid is the correct solution
-        printf("The solution of the equation is %f", mid);
-    } else {
-        double valueDerivative = expression->derivative();
-        if(valueDerivative > 0){
-            if(res>0)
-                upperBound = mid;
-            else
-                lowerBound = mid;
-        } else if (valueDerivative < 0){
-            if(res>0)
-                lowerBound = mid;
-            else
-                upperBound = mid;
+    for(uint i = 0; i < steps; i++){
+        printf("lowerBound: %f, upperBound: %f", lowerBound, upperBound);
+        mid = (upperBound + lowerBound) / 2;
+        double res = expression->solve();
+        if(res == 0.0){
+            //mid is the correct solution
+            printf("The solution of the equation is %f", mid);
+            return;
         } else {
-            printf("Error, derivative in %f is 0", mid);
+            double valueDerivative = expression->derivative();
+            if(valueDerivative > 0){
+                if(res>0)
+                    upperBound = mid;
+                else
+                    lowerBound = mid;
+            } else if (valueDerivative < 0){
+                if(res>0)
+                    lowerBound = mid;
+                else
+                    upperBound = mid;
+            } else {
+                printf("Error, derivative in %f is 0", mid);
+                return;
+            }
         }
     }
 }
 
-void BisectionMethod::previousStep(){
-    //TODO
+double BisectionMethod::getCurrentResult()
+{
+    return mid;
 }
 
-double BisectionMethod::getResult(){
-    //TODO
-    return -1;
+void BisectionMethod::display()
+{
+    //TODO display lowerbound and upperbound line
 }

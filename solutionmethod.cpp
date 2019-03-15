@@ -18,8 +18,3 @@ uint SolutionMethod::getTotalSteps()
 {
     return totalSteps;
 }
-
-void SolutionMethod::setStep(uint step)
-{
-    currentStep = step;
-}
