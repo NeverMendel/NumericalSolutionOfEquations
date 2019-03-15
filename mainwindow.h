@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QChart>
 #include "expression.h"
+#include "bisectionmethod.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,9 +31,12 @@ private slots:
 
     void on_actionResetZoom_triggered();
 
+    void on_actionNext_triggered();
+
 private:
     Ui::MainWindow *ui;
     QtCharts::QChart *chart;
+    SolutionMethod *method;
 };
 
 #endif // MAINWINDOW_H

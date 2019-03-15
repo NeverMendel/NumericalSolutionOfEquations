@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 #include <iostream>
-#include "bisectionmethod.h"
 
 #define FUNCTION "x * 10 + 4"
 
@@ -48,9 +47,16 @@ void MainWindow::on_displayButton_clicked()
     }
     chart->addSeries(series);
     this->chart->createDefaultAxes();
-    /*BisectionMethod b(expression, chart, lb, ub, steps);
-    b.nextStep();
-    std::printf("%f", expression->derivative());*/
+
+    if(ui->bisectionRB->isChecked()){
+        method = new BisectionMethod(expression, chart, lb, ub, steps);
+    } else if(ui->secantRB->isChecked()){
+        //method = new SecantMethod(expression, chart, lb, ub, steps);
+    } else {
+        //method = new NewtonMethod(expression, chart, lb, ub, steps);
+    }
+    method->next();
+    method->display();
 }
 
 void MainWindow::on_actionReset_triggered()
@@ -76,4 +82,11 @@ void MainWindow::on_actionZoomOut_triggered()
 void MainWindow::on_actionResetZoom_triggered()
 {
     this->chart->zoomReset();
+}
+
+void MainWindow::on_actionNext_triggered()
+{
+    method->next(uint(ui->singleStepSpinBox->value()));
+    method->display();
+    ui->resultLabel->setNum(method->getCurrentResult());
 }

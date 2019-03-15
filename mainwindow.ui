@@ -88,13 +88,11 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNext"/>
-   <addaction name="actionPrevious"/>
    <addaction name="separator"/>
    <addaction name="actionResetZoom"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
    <addaction name="separator"/>
-   <addaction name="actionRestart"/>
    <addaction name="actionReset"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -191,6 +189,26 @@
          <widget class="QLabel" name="stepsLabel">
           <property name="text">
            <string>Steps</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="singleStepLabel">
+          <property name="text">
+           <string>SingleStep</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="singleStepSpinBox">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>300</number>
+          </property>
+          <property name="value">
+           <number>1</number>
           </property>
          </widget>
         </item>
@@ -310,36 +328,12 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionRestart">
-   <property name="text">
-    <string>Restart</string>
-   </property>
-   <property name="toolTip">
-    <string>Restart</string>
-   </property>
-  </action>
-  <action name="actionReset">
-   <property name="text">
-    <string>Reset All</string>
-   </property>
-   <property name="toolTip">
-    <string>Reset All</string>
-   </property>
-  </action>
   <action name="actionNext">
    <property name="text">
     <string>Next</string>
    </property>
    <property name="shortcut">
     <string>Right</string>
-   </property>
-  </action>
-  <action name="actionPrevious">
-   <property name="text">
-    <string>Previous</string>
-   </property>
-   <property name="shortcut">
-    <string>Left</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -366,6 +360,14 @@
   <action name="actionResetZoom">
    <property name="text">
     <string>Reset Zoom</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="text">
+    <string>Reset All</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset All</string>
    </property>
   </action>
  </widget>
