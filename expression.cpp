@@ -38,6 +38,12 @@ double Expression::solve()
     return expression.value();
 }
 
+double Expression::solve(double xValue)
+{
+    addVariable("x", xValue);
+    return solve();
+}
+
 double Expression::derivative()
 {
     return exprtk::derivative(expression, variables["x"]);

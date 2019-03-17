@@ -16,6 +16,7 @@ public:
     void changeVariable(std::string variable, double delta);
     double getVariable(std::string variable);
     double solve();
+    double solve(double xValue);
     double derivative();
 
 private:
