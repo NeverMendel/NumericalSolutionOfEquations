@@ -7,8 +7,12 @@ Expression::Expression(std::string expression_str)
 
 void Expression::addVariable(std::string variable, double value)
 {
-    variables.insert(std::make_pair(variable, value));
-    symbol_table.add_variable(variable, variables[variable]);
+    if(variables.count(variable) == 0){
+        variables.insert(std::make_pair(variable, value));
+        symbol_table.add_variable(variable, variables[variable]);
+    } else {
+        variables[variable] = value;
+    }
 }
 
 void Expression::changeVariable(std::string variable, double delta)
