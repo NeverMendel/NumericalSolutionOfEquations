@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#define FUNCTION "x * 10 + 4"
+#define FUNCTION "x - 2.5"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -57,6 +57,7 @@ void MainWindow::on_displayButton_clicked()
     }
     method->next();
     method->display();
+    ui->resultLabel->setNum(method->getCurrentResult());
 }
 
 void MainWindow::on_actionReset_triggered()
@@ -67,6 +68,7 @@ void MainWindow::on_actionReset_triggered()
     ui->ubSpinBox->setValue(10);
     ui->stepsSB->setValue(10);
     ui->bisectionRB->setChecked(true);
+    ui->resultLabel->setText("");
 }
 
 void MainWindow::on_actionZoomIn_triggered()
