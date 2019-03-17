@@ -15,8 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->function->setText(FUNCTION);
     this->chart = ui->chartView->chart();
     ui->chartView->setRubberBand(QChartView::RectangleRubberBand);
+    chart->legend()->hide();
 
-    method = NULL;
+    method = nullptr;
 }
 
 MainWindow::~MainWindow()
@@ -31,9 +32,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_displayButton_clicked()
 {
-    //TODO check the method to be used and display the chart
-
-    chart->removeAllSeries();
+    resetResults();
     Expression *expression = new Expression(ui->function->text().toStdString());
 
     int lb = ui->lbSpinBox->value();
@@ -48,6 +47,12 @@ void MainWindow::on_displayButton_clicked()
         expression->changeVariable("x", 1);
     }
     chart->addSeries(series);
+
+    QLineSeries *xAxes = new QLineSeries();
+    *xAxes << QPointF(lb, 0) << QPointF(ub, 0);
+    xAxes->setColor("brown");
+    chart->addSeries(xAxes);
+
     this->chart->createDefaultAxes();
 
     if(ui->bisectionRB->isChecked()){
@@ -57,21 +62,23 @@ void MainWindow::on_displayButton_clicked()
     } else {
         //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }
-    //on_actionNext_triggered();
+    if(!ui->actionStepByStep->isChecked()){
+        method->finish();
+    }
+    method->display();
+    chart->createDefaultAxes();
 }
 
 void MainWindow::on_actionReset_triggered()
 {
-    chart->removeAllSeries();
+    resetResults();
     ui->function->setText(FUNCTION);
     ui->lbSpinBox->setValue(0);
     ui->ubSpinBox->setValue(10);
     ui->accuracyDoubleSpinBox->setValue(0.01);
     ui->bisectionRB->setChecked(true);
-    ui->resultLabel->setText("");
-    ui->statusLabel->setText("Not finished");
     delete method;
-    method = NULL;
+    method = nullptr;
 }
 
 void MainWindow::on_actionZoomIn_triggered()
@@ -98,9 +105,17 @@ void MainWindow::on_actionNext_triggered()
             method->next();
         }
         method->display();
+        chart->createDefaultAxes();
         ui->resultLabel->setNum(method->getCurrentResult());
         if(method->hasFinished()){
             ui->statusLabel->setText("Finished");
         }
     }
+}
+
+void MainWindow::resetResults()
+{
+    chart->removeAllSeries();
+    ui->resultLabel->setText("");
+    ui->statusLabel->setText("Not finished");
 }

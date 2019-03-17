@@ -34,6 +34,8 @@ private slots:
     void on_actionNext_triggered();
 
 private:
+    void resetResults();
+
     Ui::MainWindow *ui;
     QtCharts::QChart *chart;
     SolutionMethod *method;
