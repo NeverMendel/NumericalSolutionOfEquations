@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->function->setText(FUNCTION);
     this->chart = ui->chartView->chart();
     ui->chartView->setRubberBand(QChartView::RectangleRubberBand);
+
+    method = NULL;
 }
 
 MainWindow::~MainWindow()
@@ -58,6 +60,9 @@ void MainWindow::on_displayButton_clicked()
     method->next();
     method->display();
     ui->resultLabel->setNum(method->getCurrentResult());
+    if(method->hasFinished()){
+        ui->statusLabel->setText("Finished");
+    }
 }
 
 void MainWindow::on_actionReset_triggered()
@@ -69,6 +74,9 @@ void MainWindow::on_actionReset_triggered()
     ui->accuracyDoubleSpinBox->setValue(0.01);
     ui->bisectionRB->setChecked(true);
     ui->resultLabel->setText("");
+    ui->statusLabel->setText("Not finished");
+    delete method;
+    method = NULL;
 }
 
 void MainWindow::on_actionZoomIn_triggered()
@@ -88,7 +96,12 @@ void MainWindow::on_actionResetZoom_triggered()
 
 void MainWindow::on_actionNext_triggered()
 {
-    method->next(uint(ui->singleStepSpinBox->value()));
-    method->display();
-    ui->resultLabel->setNum(method->getCurrentResult());
+    if(method){
+        method->next(uint(ui->singleStepSpinBox->value()));
+        method->display();
+        ui->resultLabel->setNum(method->getCurrentResult());
+        if(method->hasFinished()){
+            ui->statusLabel->setText("Finished");
+        }
+    }
 }

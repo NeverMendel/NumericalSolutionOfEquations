@@ -310,7 +310,7 @@
         <widget class="QLabel" name="resultLabel">
          <property name="geometry">
           <rect>
-           <x>116</x>
+           <x>120</x>
            <y>20</y>
            <width>70</width>
            <height>13</height>
@@ -318,6 +318,25 @@
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="statusLabel">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>30</y>
+           <width>61</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Not finished</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
