@@ -36,7 +36,7 @@ void MainWindow::on_displayButton_clicked()
 
     int lb = ui->lbSpinBox->value();
     int ub = ui->ubSpinBox->value();
-    uint steps = UINT(ui->stepsSB->value());
+    double accuracy = ui->accuracyDoubleSpinBox->value();
 
     QSplineSeries *series = new QSplineSeries();
     series->setName("Function");
@@ -49,11 +49,11 @@ void MainWindow::on_displayButton_clicked()
     this->chart->createDefaultAxes();
 
     if(ui->bisectionRB->isChecked()){
-        method = new BisectionMethod(expression, chart, lb, ub, steps);
+        method = new BisectionMethod(expression, chart, lb, ub, accuracy);
     } else if(ui->secantRB->isChecked()){
-        //method = new SecantMethod(expression, chart, lb, ub, steps);
+        //method = new SecantMethod(expression, chart, lb, ub, accuracy);
     } else {
-        //method = new NewtonMethod(expression, chart, lb, ub, steps);
+        //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }
     method->next();
     method->display();
@@ -66,7 +66,7 @@ void MainWindow::on_actionReset_triggered()
     ui->function->setText(FUNCTION);
     ui->lbSpinBox->setValue(0);
     ui->ubSpinBox->setValue(10);
-    ui->stepsSB->setValue(10);
+    ui->accuracyDoubleSpinBox->setValue(0.01);
     ui->bisectionRB->setChecked(true);
     ui->resultLabel->setText("");
 }

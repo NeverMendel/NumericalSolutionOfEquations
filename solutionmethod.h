@@ -9,18 +9,20 @@ typedef unsigned int uint;
 class SolutionMethod
 {
 public:
-    SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps);
+    SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy);
     virtual void next(uint steps = 1) = 0;
     virtual double getCurrentResult() = 0;
     virtual void display() = 0;
+    bool hasFinished();
     uint getCurrentStep();
-    uint getTotalSteps();
 protected:
     QtCharts::QChart *chart;
     uint currentStep;
     Expression *expression;
     double lowerBound;
     double upperBound;
+    double accuracy;
+    bool finished;
 private:
     uint totalSteps;
 };

@@ -1,23 +1,25 @@
 #include "bisectionmethod.h"
 
-BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, uint steps) : SolutionMethod (expression, chart, lowerBound, upperBound, steps)
+BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
 {};
 
 void BisectionMethod::next(uint steps)
 {
+    if(hasFinished()) return;
     for(uint i = 0; i < steps; i++){
-        printf("lowerBound: %f, upperBound: %f, mid: %f", lowerBound, upperBound, mid);
         mid = (upperBound + lowerBound) / 2;
+        printf("lowerBound: %f, upperBound: %f, mid: %f, accuracy: %f \n", lowerBound, upperBound, mid, accuracy);
         expression->addVariable("x", mid);
         double res = expression->solve();
-        printf("res: %f", res);
-        if(abs(res) < 0.1){// the solution is within 0.1 of error
+        printf("res: %f \n", res);
+        if(abs(res) < accuracy){// the solution is within the desired accuracy
             //mid is the correct solution
-            printf("The solution of the equation is %f", mid);
+            finished = true;
+            printf("The solution of the equation is %f \n", mid);
             return;
         } else {
             double valueDerivative = expression->derivative();
-            printf("valueDerivative: %f", valueDerivative);
+            printf("valueDerivative: %f \n", valueDerivative);
             if(valueDerivative > 0){
                 if(res>0)
                     upperBound = mid;
@@ -29,7 +31,8 @@ void BisectionMethod::next(uint steps)
                 else
                     upperBound = mid;
             } else {
-                printf("Error, derivative in %f is 0", mid);
+                finished = true;
+                printf("Error, derivative in %f is 0 \n", mid);
                 return;
             }
         }
