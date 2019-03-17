@@ -43,7 +43,7 @@ void MainWindow::on_displayButton_clicked()
     QSplineSeries *series = new QSplineSeries();
     series->setName("Function");
     expression->addVariable("x", lb);
-    for (double i = lb; i < ub; i++) {
+    for (double i = lb; i <= ub; i++) {
         *series << QPointF(i, expression->solve());
         expression->changeVariable("x", 1);
     }
@@ -57,7 +57,7 @@ void MainWindow::on_displayButton_clicked()
     } else {
         //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }
-    on_actionNext_triggered();
+    //on_actionNext_triggered();
 }
 
 void MainWindow::on_actionReset_triggered()

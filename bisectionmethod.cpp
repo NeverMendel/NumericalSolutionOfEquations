@@ -1,7 +1,9 @@
 #include "bisectionmethod.h"
 
 BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
-{}
+{
+    display();
+}
 
 void BisectionMethod::next(uint steps)
 {
@@ -48,5 +50,30 @@ double BisectionMethod::getCurrentResult()
 
 void BisectionMethod::display()
 {
-    //TODO display lowerbound and upperbound line
+    if(!hasFinished())
+    {
+        chart->removeSeries(lowerBoundSeries);
+        chart->removeSeries(upperBoundSeries);
+
+        lowerBoundSeries = new QSplineSeries();
+        *lowerBoundSeries << QPointF(lowerBound, 20) << QPointF(lowerBound, -20);
+        lowerBoundSeries->setColor("red");
+        chart->addSeries(lowerBoundSeries);
+        this->chart->createDefaultAxes();
+
+        upperBoundSeries = new QSplineSeries();
+        *upperBoundSeries << QPointF(upperBound, 20) << QPointF(upperBound, -20);
+        upperBoundSeries->setColor("red");
+        chart->addSeries(upperBoundSeries);
+        this->chart->createDefaultAxes();
+    }
+    else
+    {
+        QSplineSeries *lowerBoundSeries = new QSplineSeries();
+        *lowerBoundSeries << QPointF(mid, 20) << QPointF(mid, -20);
+        lowerBoundSeries->setColor("blue");
+        chart->addSeries(lowerBoundSeries);
+        this->chart->createDefaultAxes();
+        printf("finish");
+    }
 }

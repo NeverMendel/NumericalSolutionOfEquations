@@ -14,6 +14,8 @@ public:
     void display();
 private:
     double mid;
+    QSplineSeries *upperBoundSeries;
+    QSplineSeries *lowerBoundSeries;
 };
 
 #endif // BISECTIONMETHOD_H
