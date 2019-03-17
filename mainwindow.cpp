@@ -57,7 +57,11 @@ void MainWindow::on_displayButton_clicked()
     } else {
         //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }
-    method->next();
+    if(!ui->actionStepByStep->isChecked()){
+        method->finish();
+    } else {
+        method->next();
+    }
     method->display();
     ui->resultLabel->setNum(method->getCurrentResult());
     if(method->hasFinished()){
@@ -96,7 +100,7 @@ void MainWindow::on_actionResetZoom_triggered()
 
 void MainWindow::on_actionNext_triggered()
 {
-    if(method){
+    if(method && !method->hasFinished()){
         method->next(uint(ui->singleStepSpinBox->value()));
         method->display();
         ui->resultLabel->setNum(method->getCurrentResult());

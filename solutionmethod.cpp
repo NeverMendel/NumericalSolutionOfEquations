@@ -10,6 +10,13 @@ SolutionMethod::SolutionMethod(Expression *expression, QtCharts::QChart *chart, 
     finished = false;
 }
 
+void SolutionMethod::finish()
+{
+    while(!hasFinished()){
+        next();
+    };
+}
+
 bool SolutionMethod::hasFinished()
 {
     return finished;

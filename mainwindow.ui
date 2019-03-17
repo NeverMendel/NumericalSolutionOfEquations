@@ -87,6 +87,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionStepByStep"/>
    <addaction name="actionNext"/>
    <addaction name="separator"/>
    <addaction name="actionResetZoom"/>
@@ -393,6 +394,17 @@
    </property>
    <property name="toolTip">
     <string>Reset All</string>
+   </property>
+  </action>
+  <action name="actionStepByStep">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Step By Step</string>
    </property>
   </action>
  </widget>

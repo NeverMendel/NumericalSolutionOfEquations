@@ -14,6 +14,7 @@ public:
     virtual void next(uint steps = 1) = 0;
     virtual double getCurrentResult() = 0;
     virtual void display() = 0;
+    void finish();
     bool hasFinished();
     uint getCurrentStep();
 protected:
