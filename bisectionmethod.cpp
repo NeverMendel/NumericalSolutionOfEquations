@@ -5,17 +5,19 @@ BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart
 
 void BisectionMethod::next(uint steps)
 {
-    expression->addVariable("x", mid);
     for(uint i = 0; i < steps; i++){
-        printf("lowerBound: %f, upperBound: %f", lowerBound, upperBound);
+        printf("lowerBound: %f, upperBound: %f, mid: %f", lowerBound, upperBound, mid);
         mid = (upperBound + lowerBound) / 2;
+        expression->addVariable("x", mid);
         double res = expression->solve();
-        if(res == 0.0){
+        printf("res: %f", res);
+        if(abs(res) < 0.1){// the solution is within 0.1 of error
             //mid is the correct solution
             printf("The solution of the equation is %f", mid);
             return;
         } else {
             double valueDerivative = expression->derivative();
+            printf("valueDerivative: %f", valueDerivative);
             if(valueDerivative > 0){
                 if(res>0)
                     upperBound = mid;
@@ -31,6 +33,7 @@ void BisectionMethod::next(uint steps)
                 return;
             }
         }
+        fflush(stdout);
     }
 }
 
