@@ -36,6 +36,7 @@ void BisectionMethod::next(uint steps)
                 return;
             }
         }
+        currentStep++;
         fflush(stdout);
     }
 }
