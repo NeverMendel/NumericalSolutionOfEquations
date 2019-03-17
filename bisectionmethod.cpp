@@ -1,7 +1,7 @@
 #include "bisectionmethod.h"
 
 BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
-{};
+{}
 
 void BisectionMethod::next(uint steps)
 {

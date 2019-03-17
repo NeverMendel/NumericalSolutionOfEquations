@@ -10,6 +10,7 @@ class SolutionMethod
 {
 public:
     SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy);
+    ~SolutionMethod(){}
     virtual void next(uint steps = 1) = 0;
     virtual double getCurrentResult() = 0;
     virtual void display() = 0;
