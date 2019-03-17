@@ -14,8 +14,10 @@ public:
     void display();
 private:
     double mid;
-    QSplineSeries *upperBoundSeries;
-    QSplineSeries *lowerBoundSeries;
+    QLineSeries *lowerBoundSeries;
+    QLineSeries *upperBoundSeries;
+    double minY;
+    double maxY;
 };
 
 #endif // BISECTIONMETHOD_H
