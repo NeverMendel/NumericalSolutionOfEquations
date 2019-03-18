@@ -7,6 +7,7 @@ SolutionMethod::SolutionMethod(Expression *expression, QtCharts::QChart *chart, 
     this->lowerBound = lowerBound;
     this->upperBound = upperBound;
     this->accuracy = accuracy;
+    currentStep = 0;
     finished = false;
 }
 

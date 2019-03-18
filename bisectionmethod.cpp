@@ -15,6 +15,7 @@ void BisectionMethod::next(uint steps)
 {
     if(hasFinished()) return;
     for(uint i = 0; i < steps; i++){
+        currentStep++;
         mid = (upperBound + lowerBound) / 2;
         printf("lowerBound: %f, upperBound: %f, mid: %f, accuracy: %f \n", lowerBound, upperBound, mid, accuracy);
         expression->addVariable("x", mid);
@@ -44,7 +45,6 @@ void BisectionMethod::next(uint steps)
                 return;
             }
         }
-        currentStep++;
         fflush(stdout);
     }
 }
