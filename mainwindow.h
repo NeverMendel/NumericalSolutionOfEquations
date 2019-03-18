@@ -35,6 +35,7 @@ private slots:
 
 private:
     void resetResults();
+    void refreshResults();
 
     Ui::MainWindow *ui;
     QtCharts::QChart *chart;

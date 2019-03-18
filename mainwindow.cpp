@@ -66,6 +66,7 @@ void MainWindow::on_displayButton_clicked()
         method->finish();
     }
     method->display();
+    refreshResults();
     chart->createDefaultAxes();
 }
 
@@ -106,16 +107,24 @@ void MainWindow::on_actionNext_triggered()
         }
         method->display();
         chart->createDefaultAxes();
-        ui->resultLabel->setNum(method->getCurrentResult());
-        if(method->hasFinished()){
-            ui->statusLabel->setText("Finished");
-        }
+        refreshResults();
     }
 }
 
 void MainWindow::resetResults()
 {
     chart->removeAllSeries();
-    ui->resultLabel->setText("");
+    ui->resultLabel->setText("Unknown");
+    ui->currentStepLabel->setNum(0);
     ui->statusLabel->setText("Not finished");
+}
+
+void MainWindow::refreshResults()
+{
+    if(method->getCurrentStep() != 0)
+        ui->resultLabel->setNum(method->getCurrentResult());
+    ui->currentStepLabel->setNum(int(method->getCurrentStep()));
+
+    if(method->hasFinished())
+        ui->statusLabel->setText("Finished");
 }
