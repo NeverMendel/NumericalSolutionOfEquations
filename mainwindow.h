@@ -5,6 +5,7 @@
 #include <QChart>
 #include "expression.h"
 #include "bisectionmethod.h"
+#include "secantmethod.h"
 
 namespace Ui {
 class MainWindow;

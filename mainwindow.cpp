@@ -58,7 +58,7 @@ void MainWindow::on_displayButton_clicked()
     if(ui->bisectionRB->isChecked()){
         method = new BisectionMethod(expression, chart, lb, ub, accuracy);
     } else if(ui->secantRB->isChecked()){
-        //method = new SecantMethod(expression, chart, lb, ub, accuracy);
+        method = new SecantMethod(expression, chart, lb, ub, accuracy);
     } else {
         //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }

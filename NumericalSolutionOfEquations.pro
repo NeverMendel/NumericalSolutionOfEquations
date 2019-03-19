@@ -29,14 +29,16 @@ SOURCES += \
     mainwindow.cpp \
     solutionmethod.cpp \
     expression.cpp \
-    bisectionmethod.cpp
+    bisectionmethod.cpp \
+    secantmethod.cpp
 
 HEADERS += \
     mainwindow.h \
     exprtk.hpp \
     solutionmethod.h \
     expression.h \
-    bisectionmethod.h
+    bisectionmethod.h \
+    secantmethod.h
 
 FORMS += \
         mainwindow.ui
