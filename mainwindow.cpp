@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#define FUNCTION "x - 2.5"
+#define FUNCTION "x^2 - 4"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
