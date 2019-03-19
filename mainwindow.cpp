@@ -60,7 +60,7 @@ void MainWindow::on_displayButton_clicked()
     } else if(ui->secantRB->isChecked()){
         method = new SecantMethod(expression, chart, lb, ub, accuracy);
     } else {
-        //method = new NewtonMethod(expression, chart, lb, ub, accuracy);
+        method = new NewtonMethod(expression, chart, lb, ub, accuracy);
     }
     if(!ui->actionStepByStep->isChecked()){
         method->finish();

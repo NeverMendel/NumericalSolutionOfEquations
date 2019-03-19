@@ -30,7 +30,8 @@ SOURCES += \
     solutionmethod.cpp \
     expression.cpp \
     bisectionmethod.cpp \
-    secantmethod.cpp
+    secantmethod.cpp \
+    newtonmethod.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     solutionmethod.h \
     expression.h \
     bisectionmethod.h \
-    secantmethod.h
+    secantmethod.h \
+    newtonmethod.h
 
 FORMS += \
         mainwindow.ui

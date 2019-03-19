@@ -6,6 +6,7 @@
 #include "expression.h"
 #include "bisectionmethod.h"
 #include "secantmethod.h"
+#include "newtonmethod.h"
 
 namespace Ui {
 class MainWindow;
