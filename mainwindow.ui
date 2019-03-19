@@ -224,16 +224,16 @@
         <item row="3" column="1">
          <widget class="QDoubleSpinBox" name="accuracyDoubleSpinBox">
           <property name="decimals">
-           <number>4</number>
+           <number>6</number>
           </property>
           <property name="minimum">
-           <double>0.000100000000000</double>
+           <double>0.000010000000000</double>
           </property>
           <property name="maximum">
            <double>10.000000000000000</double>
           </property>
           <property name="singleStep">
-           <double>0.010000000000000</double>
+           <double>0.001000000000000</double>
           </property>
           <property name="value">
            <double>0.010000000000000</double>
