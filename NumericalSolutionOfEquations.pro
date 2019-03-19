@@ -25,25 +25,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
-    solutionmethod.cpp \
-    expression.cpp \
-    bisectionmethod.cpp \
-    secantmethod.cpp \
-    newtonmethod.cpp
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/solutionmethod.cpp \
+    src/expression.cpp \
+    src/bisectionmethod.cpp \
+    src/secantmethod.cpp \
+    src/newtonmethod.cpp
 
 HEADERS += \
-    mainwindow.h \
-    exprtk.hpp \
-    solutionmethod.h \
-    expression.h \
-    bisectionmethod.h \
-    secantmethod.h \
-    newtonmethod.h
+    src/mainwindow.h \
+    src/exprtk.hpp \
+    src/solutionmethod.h \
+    src/expression.h \
+    src/bisectionmethod.h \
+    src/secantmethod.h \
+    src/newtonmethod.h
 
 FORMS += \
-        mainwindow.ui
+        src/mainwindow.ui
 
 win32-msvc*{
     QMAKE_CXXFLAGS += -bigobj
