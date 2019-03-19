@@ -49,3 +49,9 @@ double Expression::derivative()
     return exprtk::derivative(expression, variables["x"]);
 }
 
+
+double Expression::derivative(double xValue)
+{
+    addVariable("x", xValue);
+    return derivative();
+}
