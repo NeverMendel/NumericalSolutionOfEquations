@@ -16,8 +16,6 @@ private:
     double mid;
     QLineSeries *lowerBoundSeries;
     QLineSeries *upperBoundSeries;
-    double minY;
-    double maxY;
 };
 
 #endif // BISECTIONMETHOD_H
