@@ -2,11 +2,6 @@
 
 BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
 {
-    double lbValue = expression->solve(lowerBound);
-    double ubValue = expression->solve(upperBound);
-    minY = std::min(lbValue, ubValue);
-    maxY = std::max(lbValue, ubValue);
-    printf("min: %f, max: %f", minY, maxY);
     lowerBoundSeries = nullptr;
     upperBoundSeries = nullptr;
 }
@@ -22,7 +17,6 @@ void BisectionMethod::next(uint steps)
         double res = expression->solve();
         printf("res: %f \n", res);
         if(abs(res) < accuracy){// the solution is within the desired accuracy
-            //mid is the correct solution
             finished = true;
             printf("The solution of the equation is %f \n", mid);
             return;
@@ -56,28 +50,21 @@ double BisectionMethod::getCurrentResult()
 
 void BisectionMethod::display()
 {
-    if(!hasFinished()){
-        if(lowerBoundSeries)
-            chart->removeSeries(lowerBoundSeries);
-        if(upperBoundSeries)
-            chart->removeSeries(upperBoundSeries);
-
-        lowerBoundSeries = new QLineSeries();
-        *lowerBoundSeries << QPointF(lowerBound, maxY) << QPointF(lowerBound, minY);
-        lowerBoundSeries->setColor(Qt::red);
-        chart->addSeries(lowerBoundSeries);
-
-
-        upperBoundSeries = new QLineSeries();
-        *upperBoundSeries << QPointF(upperBound, maxY) << QPointF(upperBound, minY);
-        upperBoundSeries->setColor(Qt::red);
-        chart->addSeries(upperBoundSeries);
-    } else {
-        QLineSeries *lowerBoundSeries = new QLineSeries();
-        *lowerBoundSeries << QPointF(mid, maxY) << QPointF(mid, minY);
-        lowerBoundSeries->setColor(Qt::blue);
-        chart->addSeries(lowerBoundSeries);
-
-        printf("Finished");
+    if(hasFinished()){
+        displayIntersectionPointLine();
     }
+    if(lowerBoundSeries)
+        chart->removeSeries(lowerBoundSeries);
+    if(upperBoundSeries)
+        chart->removeSeries(upperBoundSeries);
+
+    lowerBoundSeries = new QLineSeries();
+    *lowerBoundSeries << QPointF(lowerBound, maxY) << QPointF(lowerBound, minY);
+    lowerBoundSeries->setColor(Qt::red);
+    chart->addSeries(lowerBoundSeries);
+
+    upperBoundSeries = new QLineSeries();
+    *upperBoundSeries << QPointF(upperBound, maxY) << QPointF(upperBound, minY);
+    upperBoundSeries->setColor(Qt::red);
+    chart->addSeries(upperBoundSeries);
 }

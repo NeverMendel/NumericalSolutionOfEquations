@@ -18,6 +18,8 @@ private:
     double previous;
     double current;
     QLineSeries *line;
+    double minY;
+    double maxY;
 };
 
 #endif // SECANTMETHOD_H

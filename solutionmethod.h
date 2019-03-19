@@ -4,7 +4,10 @@
 typedef unsigned int uint;
 
 #include <QChart>
+#include <QtCharts>
 #include "expression.h"
+
+using namespace std;
 
 class SolutionMethod
 {
@@ -18,6 +21,7 @@ public:
     bool hasFinished();
     uint getCurrentStep();
 protected:
+    void displayIntersectionPointLine();
     QtCharts::QChart *chart;
     uint currentStep;
     Expression *expression;
@@ -25,6 +29,8 @@ protected:
     double upperBound;
     double accuracy;
     bool finished;
+    double minY;
+    double maxY;
 private:
     uint totalSteps;
 };

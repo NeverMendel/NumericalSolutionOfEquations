@@ -31,6 +31,9 @@ double SecantMethod::getCurrentResult()
 
 void SecantMethod::display()
 {
+    if(hasFinished()){
+        displayIntersectionPointLine();
+    }
     if(line) chart->removeSeries(line);
 
     line = new QLineSeries();
