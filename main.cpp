@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <iostream>
-#include "exprtk.hpp"
 
 using namespace std;
 

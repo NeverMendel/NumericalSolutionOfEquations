@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <iostream>
-
 #define FUNCTION "x^2 - 4"
 
 MainWindow::MainWindow(QWidget *parent) :

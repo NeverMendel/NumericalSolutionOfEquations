@@ -3,8 +3,6 @@
 
 #include "solutionmethod.h"
 
-#include <QtCharts>
-
 using namespace std;
 
 class NewtonMethod : public SolutionMethod

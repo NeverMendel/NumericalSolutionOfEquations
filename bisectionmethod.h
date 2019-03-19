@@ -1,9 +1,9 @@
 #ifndef BISECTIONMETHOD_H
 #define BISECTIONMETHOD_H
 
+#include <QtCharts>
 #include "solutionmethod.h"
 #include "expression.h"
-#include <QtCharts>
 
 class BisectionMethod : public SolutionMethod
 {

@@ -1,9 +1,7 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
-#include <string.h>
 #include <map>
-
 #include "exprtk.hpp"
 
 using namespace exprtk;
