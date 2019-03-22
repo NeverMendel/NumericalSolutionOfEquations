@@ -1,5 +1,7 @@
 #include "solutionmethod.h"
 
+#define RESOLUTION 100
+
 SolutionMethod::SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy)
 {
     this->expression = expression;
@@ -9,10 +11,17 @@ SolutionMethod::SolutionMethod(Expression *expression, QtCharts::QChart *chart, 
     this->accuracy = accuracy;
     currentStep = 0;
     finished = false;
-    double lbValue = expression->solve(lowerBound);
-    double ubValue = expression->solve(upperBound);
-    minY = std::min(lbValue, ubValue);
-    maxY = std::max(lbValue, ubValue);
+    minY = numeric_limits<double>::max();
+    maxY = numeric_limits<double>::min();
+    double increment = (upperBound - lowerBound) / RESOLUTION;
+    for(double pos = lowerBound; pos <= upperBound; pos+= increment){
+        double current = expression->solve(pos);
+        if(!isinf(current)){
+            minY = min(minY, current);
+            maxY = max(maxY, current);
+        }
+    }
+    printf("min: %f max:%f \n", minY, maxY);
 }
 
 void SolutionMethod::displayIntersectionPointLine()
