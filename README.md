@@ -4,10 +4,6 @@
 
 <img src="icon/icon.png" alt="Numerical Solution Of Equations Logo" width=100px height=100px />
 
-## Screenshot
-
-<img src="img/screenshot.png" alt="Numerical Solution Of Equations screenshot">
-
 ## Scope
 
 This program solves equation using 3 different numerical methods 
@@ -18,6 +14,10 @@ This program solves equation using 3 different numerical methods
 Other resources about Numerical Solutions Of Equations can be found 
 [here](http://cfd.mace.manchester.ac.uk/twiki/pub/Main/TimCraftNotes_All_Access/cfd1-numanal.pdf) and 
 [here](https://en.wikibooks.org/wiki/Numerical_Methods/Equation_Solving).
+
+## Screenshot
+
+<img src="img/screenshot.png" alt="Numerical Solution Of Equations screenshot">
 
 ## Libraries
 
