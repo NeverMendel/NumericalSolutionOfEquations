@@ -2,6 +2,8 @@
 
 NewtonMethod::NewtonMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
 {
+    if(lowerBound == 0.0)
+        lowerBound = accuracy;
     current = lowerBound;
     nextPoint= lowerBound;
     line = nullptr;
@@ -12,7 +14,7 @@ void NewtonMethod::next(uint steps)
     if(hasFinished()) return;
     for(uint i = 0; i < steps; i++){
         currentStep++;
-        current= nextPoint;
+        current = nextPoint;
         nextPoint = current-(expression->solve(current)/expression->derivative(current));
 
         printf("previous: %f, derivative: %f", previous, expression->derivative(previous));
@@ -33,10 +35,13 @@ double NewtonMethod::getCurrentResult()
 
 void NewtonMethod::display()
 {
-    if(line) chart->removeSeries(line);
+    if(line)
+        chart->removeSeries(line);
 
     if(currentStep>0)
     {
+        if(hasFinished())
+            displayIntersectionPointLine();
         line = new QLineSeries();
         *line << QPointF(current, expression->solve(current)) << QPointF(nextPoint, 0);
         line->setColor(Qt::red);
