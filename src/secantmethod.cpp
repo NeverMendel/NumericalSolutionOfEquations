@@ -14,8 +14,8 @@ void SecantMethod::next(uint steps)
         currentStep++;
         double next = current-(current-previous)/(expression->solve(current)-expression->solve(previous))*expression->solve(current);
         printf("%f", next);
-        previous= current;
-        current=next;
+        previous = current;
+        current = next;
         if(abs(expression->solve(current)) < accuracy){
                 printf("result is %f", next);
                 finished = true;
@@ -34,7 +34,8 @@ void SecantMethod::display()
     if(hasFinished()){
         displayIntersectionPointLine();
     }
-    if(line) chart->removeSeries(line);
+    if(line)
+        chart->removeSeries(line);
 
     line = new QLineSeries();
     *line << QPointF(previous, expression->solve(previous)) << QPointF(current, expression->solve(current));
