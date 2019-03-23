@@ -126,3 +126,17 @@ void MainWindow::refreshResults()
     if(method->hasFinished())
         ui->statusLabel->setText("Finished");
 }
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QString aboutMessage = "<h3>About Numerical Solution Of Equations</h3>"
+                           "<p>Made by <a href=https://github.com/NeverMendel>Davide Cazzin</a> and <a href=https://github.com/Limo01>Marco Andrea Limongelli</a></p>"
+                           "<p>Libraries: <ul><li>Qt</li> <li>exprtk</li></ul></p>"
+                           "<p>Copyright (C) 2019 Davide Cazzin, Marco Andrea Limongelli</p>";
+    QMessageBox::about(this, "About Numerical Solution Of Equation", aboutMessage);
+}
+
+void MainWindow::on_actionAboutQt_triggered()
+{
+    QMessageBox::aboutQt(this);
+}

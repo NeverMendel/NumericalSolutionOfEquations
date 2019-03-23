@@ -35,6 +35,10 @@ private slots:
 
     void on_actionNext_triggered();
 
+    void on_actionAbout_triggered();
+
+    void on_actionAboutQt_triggered();
+
 private:
     void resetResults();
     void refreshResults();

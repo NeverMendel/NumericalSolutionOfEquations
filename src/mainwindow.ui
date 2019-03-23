@@ -83,6 +83,7 @@
      <string>NumericalSolutionsOfEquations</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -424,6 +425,11 @@
    </property>
    <property name="text">
     <string>Step By Step</string>
+   </property>
+  </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>
