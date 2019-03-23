@@ -49,6 +49,8 @@ win32-msvc*{
     QMAKE_CXXFLAGS += -bigobj
 }
 
+RC_FILE = icon/NumericalSolutionOfEquations.rc
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
