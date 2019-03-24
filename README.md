@@ -15,6 +15,10 @@ Other resources about Numerical Solutions Of Equations can be found
 [here](http://cfd.mace.manchester.ac.uk/twiki/pub/Main/TimCraftNotes_All_Access/cfd1-numanal.pdf) and 
 [here](https://en.wikibooks.org/wiki/Numerical_Methods/Equation_Solving).
 
+## Download
+
+Download the latest release [here](https://github.com/NeverMendel/NumericalSolutionOfEquations/releases/latest).
+
 ## Screenshot
 
 <img src="img/screenshot.png" alt="Numerical Solution Of Equations screenshot">
