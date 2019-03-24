@@ -12,22 +12,23 @@ void SecantMethod::next(uint steps)
 {
     if(hasFinished()) return;
     if(currentStep==0){
-        current = lowerBound-(((upperBound-lowerBound)/(expression->solve(upperBound) - expression->solve(lowerBound)))*expression->solve(lowerBound));
+        current = lowerBound - (((upperBound-lowerBound) / (expression->solve(upperBound) - expression->solve(lowerBound))) * expression->solve(lowerBound));
 
-        if(abs(lowerBound-current)>abs(upperBound-current)) previous= lowerBound;
-        else previous= upperBound;
+        if(abs(lowerBound-current)>abs(upperBound-current)) previous = lowerBound;
+        else previous = upperBound;
 
-        printf("previous: %f current:%f", previous, current);fflush(stdout);
+        printf("previous: %f current:%f", previous, current);
     }
     for(uint i = 0; i < steps; i++){
         currentStep++;
-        double next = current-(previous-current)/(expression->solve(previous)-expression->solve(current))*expression->solve(current);
+        double next = current - (previous-current) / (expression->solve(previous) - expression->solve(current)) * expression->solve(current);
         printf("%f", next);
         //previous = current;
         current = next;
         if(abs(expression->solve(current)) < accuracy){
-                printf("result is %f", next);
-                finished = true;
+            printf("result is %f", next);
+            finished = true;
+            return;
         }
         fflush(stdout);
     }

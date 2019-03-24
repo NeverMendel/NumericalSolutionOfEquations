@@ -6,10 +6,10 @@ NewtonMethod::NewtonMethod(Expression *expression, QtCharts::QChart *chart, doub
         lowerBound = accuracy;
 
     if(abs(expression->solve(lowerBound))>abs(expression->solve(upperBound)))
-        current= lowerBound;
+        current = lowerBound;
     else
-        current= upperBound;
-    nextPoint = current-(expression->solve(current)/expression->derivative(current));
+        current = upperBound;
+    nextPoint = current - (expression->solve(current)/expression->derivative(current));
 
     line = nullptr;
 }
@@ -19,14 +19,13 @@ void NewtonMethod::next(uint steps)
     if(hasFinished()) return;
     for(uint i = 0; i < steps; i++){
         current = nextPoint;
-        nextPoint = current-(expression->solve(current)/expression->derivative(current));
+        nextPoint = current - (expression->solve(current) / expression->derivative(current));
         currentStep++;
-        printf("previous: %f, derivative: %f", previous, expression->derivative(previous));
 
         if(abs(expression->solve(current)) < accuracy){
-                printf("result is %f", current);
-                finished = true;
-                return;
+            printf("result is %f", current);
+            finished = true;
+            return;
         }
         fflush(stdout);
     }

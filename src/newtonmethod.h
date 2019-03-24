@@ -13,7 +13,6 @@ public:
     double getCurrentResult();
     void display();
 private:
-    double previous;
     double current;
     double nextPoint;
     QLineSeries *line;
