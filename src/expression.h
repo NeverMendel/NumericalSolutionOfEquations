@@ -17,6 +17,8 @@ public:
     double solve(double xValue);
     double derivative();
     double derivative(double xValue);
+    double second_derivative();
+    double second_derivative(double xValue);
 
 private:
     symbol_table<double> symbol_table;

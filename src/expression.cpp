@@ -55,3 +55,15 @@ double Expression::derivative(double xValue)
     addVariable("x", xValue);
     return derivative();
 }
+
+double Expression::second_derivative()
+{
+    return exprtk::second_derivative(expression, variables["x"]);
+}
+
+
+double Expression::second_derivative(double xValue)
+{
+    addVariable("x", xValue);
+    return second_derivative();
+}
