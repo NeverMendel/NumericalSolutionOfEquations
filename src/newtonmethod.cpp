@@ -4,8 +4,13 @@ NewtonMethod::NewtonMethod(Expression *expression, QtCharts::QChart *chart, doub
 {
     if(lowerBound == 0.0)
         lowerBound = accuracy;
-    current = lowerBound;
-    nextPoint= lowerBound;
+
+    if(abs(expression->solve(lowerBound))>abs(expression->solve(upperBound)))
+        current= lowerBound;
+    else
+        current= upperBound;
+    nextPoint = current-(expression->solve(current)/expression->derivative(current));
+
     line = nullptr;
 }
 
@@ -13,10 +18,9 @@ void NewtonMethod::next(uint steps)
 {
     if(hasFinished()) return;
     for(uint i = 0; i < steps; i++){
-        currentStep++;
         current = nextPoint;
         nextPoint = current-(expression->solve(current)/expression->derivative(current));
-
+        currentStep++;
         printf("previous: %f, derivative: %f", previous, expression->derivative(previous));
 
         if(abs(expression->solve(current)) < accuracy){
@@ -38,16 +42,13 @@ void NewtonMethod::display()
     if(line)
         chart->removeSeries(line);
 
-    if(currentStep>0)
-    {
-        if(hasFinished())
-            displayIntersectionPointLine();
-        line = new QLineSeries();
-        *line << QPointF(current, expression->solve(current)) << QPointF(nextPoint, 0);
-        line->setColor(Qt::red);
-        QPen pen = line->pen();
-        pen.setWidth(2);
-        line->setPen(pen);
-        chart->addSeries(line);
-    }
+    if(hasFinished())
+        displayIntersectionPointLine();
+    line = new QLineSeries();
+    *line << QPointF(current, expression->solve(current)) << QPointF(nextPoint, 0);
+    line->setColor(Qt::red);
+    QPen pen = line->pen();
+    pen.setWidth(2);
+    line->setPen(pen);
+    chart->addSeries(line);
 }
