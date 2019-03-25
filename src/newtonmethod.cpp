@@ -2,14 +2,11 @@
 
 NewtonMethod::NewtonMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
 {
-    if(lowerBound == 0.0)
-        lowerBound = accuracy;
-
     if(abs(expression->solve(lowerBound))>abs(expression->solve(upperBound)))
         current = lowerBound;
     else
         current = upperBound;
-    nextPoint = current - (expression->solve(current)/expression->derivative(current));
+    nextPoint = current - (expression->solve(current) / expression->derivative(current));
 
     line = nullptr;
 }
@@ -23,7 +20,7 @@ void NewtonMethod::next(uint steps)
         currentStep++;
 
         if(abs(expression->solve(current)) < accuracy){
-            printf("result is %f", current);
+            printf("The solution of the equation is %f \n", current);
             finished = true;
             return;
         }
