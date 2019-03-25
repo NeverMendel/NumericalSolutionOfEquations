@@ -11,21 +11,18 @@ NewtonMethod::NewtonMethod(Expression *expression, QtCharts::QChart *chart, doub
     line = nullptr;
 }
 
-void NewtonMethod::next(uint steps)
+void NewtonMethod::next()
 {
     if(hasFinished()) return;
-    for(uint i = 0; i < steps; i++){
-        current = nextPoint;
-        nextPoint = current - (expression->solve(current) / expression->derivative(current));
-        currentStep++;
+    current = nextPoint;
+    nextPoint = current - (expression->solve(current) / expression->derivative(current));
+    currentStep++;
 
-        if(abs(expression->solve(current)) < accuracy){
-            printf("The solution of the equation is %f \n", current);
-            finished = true;
-            return;
-        }
-        fflush(stdout);
+    if(abs(expression->solve(current)) < accuracy){
+        printf("The solution of the equation is %f \n", current);
+        finished = true;
     }
+    fflush(stdout);
 }
 
 double NewtonMethod::getCurrentResult()

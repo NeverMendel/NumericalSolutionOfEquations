@@ -6,38 +6,35 @@ BisectionMethod::BisectionMethod(Expression *expression, QtCharts::QChart *chart
     upperBoundSeries = nullptr;
 }
 
-void BisectionMethod::next(uint steps)
+void BisectionMethod::next()
 {
     if(hasFinished()) return;
-    for(uint i = 0; i < steps; i++){
-        currentStep++;
-        mid = (upperBound + lowerBound) / 2;
-        printf("lowerBound: %f, upperBound: %f, mid: %f, accuracy: %f \n", lowerBound, upperBound, mid, accuracy);
-        expression->addVariable("x", mid);
-        double res = expression->solve();
-        printf("res: %f \n", res);
-        if(abs(res) < accuracy){// the solution is within the desired accuracy
-            finished = true;
-            printf("The solution of the equation is %f \n", mid);
-            return;
+    currentStep++;
+    mid = (upperBound + lowerBound) / 2;
+    printf("lowerBound: %f, upperBound: %f, mid: %f, accuracy: %f \n", lowerBound, upperBound, mid, accuracy);
+    expression->addVariable("x", mid);
+    double res = expression->solve();
+    printf("res: %f \n", res);
+    if(abs(res) < accuracy){// the solution is within the desired accuracy
+        finished = true;
+        printf("The solution of the equation is %f \n", mid);
+        return;
+    } else {
+        double valueDerivative = expression->derivative();
+        printf("valueDerivative: %f \n", valueDerivative);
+        if(valueDerivative > 0){
+            if(res>0)
+                upperBound = mid;
+            else
+                lowerBound = mid;
+        } else if (valueDerivative < 0){
+            if(res>0)
+                lowerBound = mid;
+            else
+                upperBound = mid;
         } else {
-            double valueDerivative = expression->derivative();
-            printf("valueDerivative: %f \n", valueDerivative);
-            if(valueDerivative > 0){
-                if(res>0)
-                    upperBound = mid;
-                else
-                    lowerBound = mid;
-            } else if (valueDerivative < 0){
-                if(res>0)
-                    lowerBound = mid;
-                else
-                    upperBound = mid;
-            } else {
-                finished = true;
-                printf("Error, derivative in %f is 0 \n", mid);
-                return;
-            }
+            finished = true;
+            printf("Error, derivative in %f is 0 \n", mid);
         }
         fflush(stdout);
     }

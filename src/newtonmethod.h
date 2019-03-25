@@ -9,7 +9,7 @@ class NewtonMethod : public SolutionMethod
 {
 public:
     NewtonMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy);
-    void next(uint steps = 1);
+    void next();
     double getCurrentResult();
     void display();
 private:

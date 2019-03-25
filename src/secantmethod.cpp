@@ -8,19 +8,16 @@ SecantMethod::SecantMethod(Expression *expression, QtCharts::QChart *chart, doub
     line = nullptr;
 }
 
-void SecantMethod::next(uint steps)
+void SecantMethod::next()
 {
     if(hasFinished()) return;
-    for(uint i = 0; i < steps; i++){
-        currentStep++;
-        double next = current - (previous-current) / (expression->solve(previous) - expression->solve(current)) * expression->solve(current);
-        current = next;
+    currentStep++;
+    double next = current - (previous-current) / (expression->solve(previous) - expression->solve(current)) * expression->solve(current);
+    current = next;
 
-        if(abs(expression->solve(current)) < accuracy){
-            printf("The solution of the equation is %f \n", next);
-            finished = true;
-            return;
-        }
+    if(abs(expression->solve(current)) < accuracy){
+        printf("The solution of the equation is %f \n", next);
+        finished = true;
     }
     fflush(stdout);
 }

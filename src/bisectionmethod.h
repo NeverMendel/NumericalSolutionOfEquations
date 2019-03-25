@@ -9,7 +9,7 @@ class BisectionMethod : public SolutionMethod
 {
 public:
     BisectionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy);
-    void next(uint steps = 1);
+    void next();
     double getCurrentResult();
     void display();
 private:
