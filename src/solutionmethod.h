@@ -15,6 +15,7 @@ public:
     SolutionMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy);
     ~SolutionMethod(){}
     virtual void next() = 0;
+    void next(uint steps);
     virtual double getCurrentResult() = 0;
     virtual void display() = 0;
     void finish();

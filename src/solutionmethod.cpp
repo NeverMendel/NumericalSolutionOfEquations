@@ -24,6 +24,13 @@ SolutionMethod::SolutionMethod(Expression *expression, QtCharts::QChart *chart, 
     printf("min: %f max:%f \n", minY, maxY);
 }
 
+void SolutionMethod::next(uint steps)
+{
+    for(uint i = 0; i < steps && !hasFinished(); i++){
+        next();
+    }
+}
+
 void SolutionMethod::displayIntersectionPointLine()
 {
     QLineSeries *intersectionPointSeries = new QLineSeries();

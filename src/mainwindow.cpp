@@ -101,7 +101,7 @@ void MainWindow::on_actionNext_triggered()
         if(!ui->actionStepByStep->isChecked()){
             method->finish();
         } else {
-            method->next();
+            method->next(uint(ui->singleStepSpinBox->value()));
         }
         method->display();
         chart->createDefaultAxes();
