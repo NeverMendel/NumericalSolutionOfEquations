@@ -2,8 +2,8 @@
 
 SecantMethod::SecantMethod(Expression *expression, QtCharts::QChart *chart, double lowerBound, double upperBound, double accuracy) : SolutionMethod (expression, chart, lowerBound, upperBound, accuracy)
 {
-    previous = lowerBound;
-    current= upperBound;
+    previous = upperBound;
+    current = lowerBound;
 
     line = nullptr;
 }
@@ -11,27 +11,18 @@ SecantMethod::SecantMethod(Expression *expression, QtCharts::QChart *chart, doub
 void SecantMethod::next(uint steps)
 {
     if(hasFinished()) return;
-    if(currentStep==0){
-        current = lowerBound - (((upperBound-lowerBound) / (expression->solve(upperBound) - expression->solve(lowerBound))) * expression->solve(lowerBound));
-
-        if(abs(lowerBound-current)>abs(upperBound-current)) previous = lowerBound;
-        else previous = upperBound;
-
-        printf("previous: %f current:%f", previous, current);
-    }
     for(uint i = 0; i < steps; i++){
         currentStep++;
         double next = current - (previous-current) / (expression->solve(previous) - expression->solve(current)) * expression->solve(current);
-        printf("%f", next);
-        //previous = current;
         current = next;
+
         if(abs(expression->solve(current)) < accuracy){
-            printf("result is %f", next);
+            printf("The solution of the equation is %f \n", next);
             finished = true;
             return;
         }
-        fflush(stdout);
     }
+    fflush(stdout);
 }
 
 double SecantMethod::getCurrentResult()
