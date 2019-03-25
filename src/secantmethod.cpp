@@ -13,6 +13,8 @@ void SecantMethod::next()
     if(hasFinished()) return;
     currentStep++;
     double next = current - (previous-current) / (expression->solve(previous) - expression->solve(current)) * expression->solve(current);
+
+    previous = current;
     current = next;
 
     if(abs(expression->solve(current)) < accuracy){
