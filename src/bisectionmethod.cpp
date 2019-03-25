@@ -18,7 +18,6 @@ void BisectionMethod::next()
     if(abs(res) < accuracy){// the solution is within the desired accuracy
         finished = true;
         printf("The solution of the equation is %f \n", mid);
-        return;
     } else {
         double valueDerivative = expression->derivative();
         printf("valueDerivative: %f \n", valueDerivative);
@@ -36,8 +35,8 @@ void BisectionMethod::next()
             finished = true;
             printf("Error, derivative in %f is 0 \n", mid);
         }
-        fflush(stdout);
     }
+    fflush(stdout);
 }
 
 double BisectionMethod::getCurrentResult()
